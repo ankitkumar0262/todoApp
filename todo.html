@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO APP</title>
+    <style>
+        #parent {
+          display : block;
+        border: 1px solid black;
+        width: 320px;
+        height : 500px;
+        border-radius: 20px;  
+        overflow: auto;     
+        background-color: antiquewhite ;
+    }
+        
+        h2 {
+            text-decoration-style: solid;
+            color: darkcyan;
+        }
+      
+        #parent {
+            text-align: center;
+        }
+        h2 {
+            padding-top: 10px;
+        }
+        .center{
+          background-color: aqua;
+          height: auto;
+          width: auto;
+          text-align: center;
+          display: block;
+          align-items: baseline;
+        }
+        li{
+          color: rgb(25, 20, 20);
+          margin-top: 10px;
+        }
+        #task{
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-top: 10px;
+           
+        }
+        #delete{
+            margin-left: 70px;
+        }
+       
+    </style>
+</head>
+<body>
+
+<div id="parent">
+    <h2><u>TO DO APP</u></h2>
+    <input type="text" placeholder="Enter your text..." id="taskToDo">
+    <div id="tasks">
+      <h5>task to do -:</h5>
+        <ul id="task"></ul>
+    </div>
+
+    <!-- adding the clock -->
+<div class="center">  
+  <div id="banner"><span>Your local time</span></div>
+  <div id="clock"></div>
+</div>
+
+
+</div>
+<script>
+    const input = document.querySelector("#taskToDo");
+    const ul = document.getElementById("task");
+
+    input.addEventListener("keyup", function (e) {
+        if (e.key === "Enter") {
+            const li = document.createElement("li");
+            li.innerText = e.target.value;
+            const del = document.createElement("button");
+            del.id="delete";
+            del.innerHTML = "delete";
+            del.addEventListener("click", function () {
+                ul.removeChild(li); // Remove the corresponding task when the delete button is clicked
+            });
+            li.appendChild(del);
+
+            ul.appendChild(li);
+            e.target.value = "";  // Empty the input
+        }
+    });
+
+    const clock=document.getElementById('clock'); // code for the clock.
+setInterval(function(){
+    let date=new Date();
+    clock.innerHTML=date.toLocaleTimeString();
+},1000);
+</script>
+</body>
+</html>
